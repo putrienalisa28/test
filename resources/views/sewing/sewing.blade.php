@@ -36,7 +36,7 @@
                                     <td>{{ $m->totalsize }}</td>
                                     <td>{{ $m->totaloutput }}</td>
                                     <td>
-                                        <button type="button" class="btn btn-primary btn-xs btn-edit" onclick="getData('{{ $m->style }}')">
+                                        <button type="button" class="btn btn-primary btn-xs btn-edit" onclick="getData('{{ $m->date }}', '{{ $m->style }}')">
                                             <i class="fa fa-eye"></i>&nbsp;View Detail
                                         </button>
                                     </td>
@@ -53,44 +53,16 @@
             <div class="card p-4 border">
                 <div class="card-title fw-bold fs-5" id="txt-style"></div>
                 <!-- Adjusted the height of the card-datatable to auto to fit the table's content -->
-                <div class="card-datatable table-responsive pt-3" style="height: auto;">
-                    <table class="table table-responsive table-striped table-hover" id="datatable2">
-                        <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>Style</th>
-                                <th>Total Size</th>
-                                <th>Total Output</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="resultTableBody">
-                            <!-- Data dari Ajax akan ditampilkan di sini -->
-                        </tbody>
-                        {{-- <tbody> --}}
-                            {{-- @foreach ($lygSewingOutput as $m)
-                                <tr style="cursor: pointer;">
-                                    <td>{{ $m->date }}</td>
-                                    <td>{{ $m->style }}</td>
-                                    <td>{{ $m->totalsize }}</td>
-                                    <td>{{ $m->totaloutput }}</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary btn-xs btn-edit">
-                                            <i class="fa fa-eye"></i>&nbsp;View Detail
-                                        </button>
-                                    </td>
-                                </tr>
-                            @endforeach --}}
-                        {{-- </tbody> --}}
-                    </table>
+                <div class="card-datatable table-responsive pt-3" style="height: auto;" id="data-tabel-rekap">
                 </div>
             </div>
         </div>
     </div>
 </div>
         <script>
-            function getData(style) {
-            $('#txt-style').text(style);
+            function getData(date,style) {
+                // console.log(date)
+            $('#txt-style').text(style+ ' #'+date);
             var modalData = $('#mdl_table').serialize();
             var csrfToken = $('meta[name="csrf-token"]').attr('content');
             // Set the CSRF token as a default request header
@@ -110,21 +82,16 @@
                 url: "{{ asset('sewing/style') }}",
                 type: "post",
                 data: {
+                    date: date,
                     style: style
                 },
                 success: function(data) {
-                    console.log(data)
-                    var row = "<tr>" +
-                    "<td>" + data.result[0].operator_name + "</td>" +
-                    // "<td>" + data.result.Style + "</td>" +
-                    // "<td>" + data.result.TotalSize + "</td>" +
-                    // "<td>" + data.result.TotalOutput + "</td>" +
-                    "</tr>";
-
-                // Tambahkan baris ke tabel
-                $("#resultTableBody").append(row);
-                
-
+                    if(data == ''){
+                    alert('Tidak ada data');
+                    } 
+                    else{
+                        $("#data-tabel-rekap").html(data);                                                     
+                    }
                 },
                 error: function(xhr, text) {
                     $("#modal_search").modal('hide')
