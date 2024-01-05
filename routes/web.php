@@ -19,6 +19,7 @@ use App\Http\Controllers\Eform\GetDataController;
 use App\Http\Controllers\Eform\FormsysprintoutController;
 use App\Http\Controllers\Eform\FormsystahunController;
 use App\Http\Controllers\Master\DepartementController;
+use App\Http\Controllers\Sewing\SewingController;
 
 use App\Http\Controllers\Utility\SettingController;
 use App\Http\Controllers\monitoring\tpm\TpmMonitoringController;

@@ -105,6 +105,21 @@ return [
             'schema' => 'public',
             'sslmode' => 'prefer',
         ],
+        
+        'second_pgsql' => [
+            'driver' => 'pgsql',
+            'url' => env('DATABASE_URL'),
+            'host' => env('DB_LYGWEB_HOST', '127.0.0.1'),
+            'port' => env('DB_LYGWEB_PORT', '5432'),
+            'database' => env('DB_LYGWEB_DATABASE', 'forge'),
+            'username' => env('DB_LYGWEB_USERNAME', 'forge'),
+            'password' => env('DB_LYGWEB_PASSWORD', ''),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'schema' => 'public',
+            'sslmode' => 'prefer',
+        ],
 
         'sqlsrv' => [
             'driver' => 'sqlsrv',
