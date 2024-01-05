@@ -1,0 +1,10 @@
+create controller 
+
+php artisan make:controller nama_controller --resource
+
+create model
+
+php artisan make:model nama_model -m
+
+php artisan make:model nama_model -mc nama_contorller model --resource
+
