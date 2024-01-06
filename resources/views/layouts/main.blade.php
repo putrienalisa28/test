@@ -162,7 +162,7 @@
                     <div class="navbar-brand app-brand demo d-none d-xl-flex py-0 me-4">
                         <a href="index.html" class="app-brand-link gap-2">
                             {{-- <span class="app-brand-logo demo"> --}}
-                            <img src="{{ url('img/logo-01042022.png') }}" style="height: 50px;">
+                            <img src="{{ url('img/mca.jpg') }}" style="height: 50px;">
                             {{-- </span> --}}
                             <span class="app-brand-text demo menu-text fw-bold">SEWING SYSTEM</span>
                         </a>
@@ -536,12 +536,12 @@
                                 dropdown-toggle hide-arrow me-auto"
                                     href="javascript:void(0);" data-bs-toggle="dropdown">
                                     <div class="avatar avatar-online mx-auto">
-                                        <img src="{{ asset('img/avatars/1.png') }}" alt
+                                        <img src="{{ asset('img/avatars/user.png') }}" alt
                                             class="h-auto rounded-circle" />
                                     </div>
                                 </a>
                             </li>
-                            <span class="fw-semibold d-inline-block ">John Doe (Prgorammer)</span>
+                            <span class="fw-semibold d-inline-block ">Putri Ena Lisa (Prgorammer)</span>
 
                             <li class="nav-item me-3 me-xl-1">
                                 <a class="nav-link hide-arrow" href="{{ route('logout') }}"><i
@@ -739,7 +739,7 @@
                                                 document.write(new Date().getFullYear());
                                             </script>
                                             , made with ❤️ by <a href="https://sambugroup.com/" target="_blank"
-                                                class="fw-semibold">ITD TEAM</a>
+                                                class="fw-semibold">PEL</a>
                                         </div>
                                         {{-- <div>
                                     <a href="https://themeforest.net/licenses/standard" class="footer-link me-4"

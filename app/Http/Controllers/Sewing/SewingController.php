@@ -61,9 +61,9 @@ class SewingController extends Controller
 
             
     
-            return response()->json(['status' => 'success', 'message' => 'Data transaction edited successfully']);
+            return $this->httpResponse(200, 'Save Data Successfully', true);
         } catch (\Exception $e) {
-            return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
+            return $this->httpResponse(500, $e->getMessage(), false);
         }
     }
     
