@@ -34,4 +34,37 @@ class SewingController extends Controller
         // return $this->httpResponse(200, 'Data From MySamIn', $response->original);
         return view('sewing/AjaxSewing',$data);
     }
+
+    public function editDataTransaction(Request $request) {
+        try {
+            $sewingModel = new SewingModel();
+            $trn_date = $request->trn_date;
+            $style_code = $request->style_code;
+            $operator_name = $request->operator_name;
+            $destination_code = $request->destination_code;
+
+            // Iterasi terhadap size_name dan qty_output
+            for ($i = 0; $i < count($request->detail['size_name']); $i++) {
+                // Membuat entri baru dengan kombinasi data yang sesuai
+                $data = [
+                    'trn_date' => $trn_date,
+                    'operator_name' => $operator_name,
+                    'style_code' => $style_code,
+                    'size_name' => $request->detail['size_name'][$i],
+                    'destination_code' => $destination_code,
+                    'qty_output' => $request->detail['qty_output'][$i]
+                ];
+                $result = $sewingModel->saveDataTransaction($data);
+            }
+                        
+                 
+
+            
+    
+            return response()->json(['status' => 'success', 'message' => 'Data transaction edited successfully']);
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
+        }
+    }
+    
 }
