@@ -9,7 +9,7 @@
         <h4 class="fw-bold py-1 mb-2"><span class="text-muted fw-light">Sewing /</span> Output</h4>
         <!-- DataTable with Buttons -->
         <button type="button" class="btn btn-primary float-right open-modal" id="machineId">
-            <span class="fa fa-plus me-2"></span>New Machine
+            <span class="fa fa-plus me-2"></span>New Transaction
         </button>
     </div>
     <div class="row">
@@ -29,15 +29,20 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($lygSewingOutput as $m)
-                                <tr style="cursor: pointer;">
+                            @foreach ($lygSewingOutput as $key=>$m)
+                                <tr style="cursor: pointer;" row="{{ $key+1 }}">
                                     <td>{{ $m->date }}</td>
                                     <td>{{ $m->style }}</td>
                                     <td>{{ $m->totalsize }}</td>
                                     <td>{{ $m->totaloutput }}</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary btn-xs btn-edit" onclick="getData('{{ $m->date }}', '{{ $m->style }}')">
+                                    <td id="btn-edit_{{$key+1}}">
+                                        <button type="button" class="btn btn-primary btn-xs btn-edit_{{$key+1}}" onclick="getData(this,'{{ $m->date }}', '{{ $m->style }}')">
                                             <i class="fa fa-eye"></i>&nbsp;View Detail
+                                        </button>
+                                    </td>
+                                    <td id="btn-close_{{$key+1}}" style="display: none">
+                                        <button type="button" class="btn btn-secondary btn-xs btn-close_{{$key+1}}" onclick="closeData(this)">
+                                            <i class="fa fa-eye"></i>&nbsp;Close Detail
                                         </button>
                                     </td>
                                 </tr>
@@ -64,8 +69,11 @@
     </div>
 </div>
         <script>
-            function getData(date,style) {
-                // console.log(date)
+            function getData(id,date,style) {
+            var row = id.closest("tr").getAttribute("row");
+            $(`#btn-edit_${row}`).hide();
+            $(`#btn-close_${row}`).show();
+
             $('#txt-style').text(style+ ' #'+date);
             $('#trn_date').val(date);
             $('#style_code').val(style);
@@ -113,61 +121,13 @@
 
                 
             }
-            // function save() {
-            //     var formData = $('#form-data').serialize();
-            //     swAlertConfirm('{{ route('machine.store') }}', undefined, undefined, formData);
-            //     $('#modal-form').modal('hide'); // Menutup modal setelah tombol "Save" diklik
-            // }
 
-            // function deleted() {
-            //     var row = event.target.closest("tr");
-            //     var machine_id = row.cells[0].innerText;
-            //     var formData = {
-            //         'machine_id': machine_id
-            //     };
-
-            //     swAlertConfirm(`{{ route('machine.delete') }}`, undefined, undefined, formData);
-            // }
-
-
-            // $(document).ready(function() {
-
-            //     $('.open-modal').click(function() {
-            //         $('#modal-form').modal('show');
-            //     });
-
-            //     // Event handler untuk tombol edit
-            //     $('.btn-edit').click(function() {
-            //         $('#modal-form').modal('show');
-            //         var row = $(this).closest('tr');
-            //         var id = row.find('td:nth-child(1)').text();
-            //         var name = row.find('td:nth-child(2)').text();
-            //         var serialnumber = row.find('td:nth-child(3)').html();
-            //         var location = row.find('td:nth-child(4)').html();
-            //         var dept = row.find('td:nth-child(5)').html();
-            //         var table = row.find('td:nth-child(6)').html();
-
-            //         $(".btn-save").html("Update")
-
-
-            //         $('#machine_id').val(id);
-            //         $('#machine_name').val(name);
-            //         $('#serial_number').val(serialnumber);
-            //         $('#location').val(location);
-            //         $('#select2Multiple').val(dept).trigger('change');
-            //         $('#table_name').val(table);
-            //     });
-
-            //     $('.btn-save').click(function() {
-            //         $('#modal-form').modal('hide');
-            //     });
-
-            //     $('#modal-form').on('hidden.bs.modal', function() {
-            //         if (!$('.btn-edit').hasClass('modal-open')) {
-            //             resetModal();
-            //             $(".btn-save").html("Save");
-            //         }
-            //     });
-            // });
+            function closeData(id){
+                var row = id.closest("tr").getAttribute("row");
+                $(`#btn-edit_${row}`).show();
+                $(`#btn-close_${row}`).hide();
+                $('#txt-style').text(''); 
+                $(`#view-tabel`).hide();
+            }
         </script>
     @endsection

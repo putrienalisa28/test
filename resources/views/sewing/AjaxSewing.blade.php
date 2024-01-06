@@ -1,3 +1,4 @@
+<div id="view-tabel">
 <span class="text-primary fw-light"><u><strong>DETAIL TRANSACTION:</u><strong></span>
 <table class="table table-responsive table-striped table-hover" id="datatable">
     <thead>
@@ -38,6 +39,7 @@
         @endforeach
     </tbody>
 </table>
+</div>
 <script>
 
     function save(id) {
@@ -46,52 +48,5 @@
         var formData2 = $('#form-data').serialize();
         swAlertConfirm('{{ asset('sewing/edit') }}', undefined, undefined, formData + '&' + formData2);
     }
-    // function save(id) {
-        // var rowSelector = 'tr[data-baris="' + id + '"]';
-        // var formData = $(rowSelector + ' input').serialize();
-        // var formData2 = $('#form-data').serialize();
-        //     Swal.fire({
-        //         title: 'Are you sure?',
-        //         text: "It will be saved!",
-        //         showCancelButton: true,
-        //         confirmButtonColor: '#30419b',
-        //         cancelButtonColor: '#d33',
-        //         confirmButtonText: 'Yes, save it!',
-        //         showLoaderOnConfirm: true,
-        //         preConfirm: () => {
-        //             return new Promise((resolve) => {
-        //                 $.ajax({
-        //                     url: '{{ asset('sewing/edit') }}',
-        //                     type: "POST",
-        //                     data: formData + '&' + formData2,
-        //                     headers: {
-        //                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
-        //                             'content')
-        //                     },
-        //                     dataType: "JSON",
-        //                     success: function(response) {
-        //                         console.log(response);
-
-        //                     },
-        //                     error: function(xhr, text) {
-        //                         console.log(xhr);
-        //                         Swal.fire('Error : ' + String(xhr.responseJSON
-        //                                 .code),
-        //                             String(xhr
-        //                                 .responseJSON
-        //                                 .message), 'error');
-        //                         // $(".btn-save").attr('disabled', false);
-        //                         // $(".btn-save").html('Save');
-        //                     }
-        //                 });
-        //             });
-        //         },
-        //     }).then((result) => {
-        //         if (!result.isConfirmed) {
-        //             $(".btn-save").attr('disabled', false);
-        //             $(".btn-save").html('Save');
-        //         }
-        //     });
-        // }
 </script>
 
