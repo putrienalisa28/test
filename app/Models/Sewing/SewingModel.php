@@ -93,6 +93,22 @@ class SewingModel extends Model
     
         return $data;
     }
+
+    public function saveDataTransaction($data)
+{
+    $result = ItemlygSewingOutput::where('trn_date', $data['trn_date'])
+        ->where('operator_name', $data['operator_name'])
+        ->where('style_code', $data['style_code'])
+        ->where('size_name', $data['size_name'])
+        ->where('destination_code', $data['destination_code'])
+        ->update(['qty_output' => $data['qty_output']]);
+
+    return $result;
+}
+
+    
+
+
 }
 
 class ItemlygDestination extends Model

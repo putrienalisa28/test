@@ -52,7 +52,11 @@
         <div class="col-md-12">
             <div class="card p-4 border">
                 <div class="card-title fw-bold fs-5" id="txt-style"></div>
-                <!-- Adjusted the height of the card-datatable to auto to fit the table's content -->
+                <form id="form-data">
+                    @csrf
+                    <input id="trn_date" class="form-control" type="hidden" name="trn_date">
+                    <input id="style_code" class="form-control" type="hidden" name="style_code">
+                </form>
                 <div class="card-datatable table-responsive pt-3" style="height: auto;" id="data-tabel-rekap">
                 </div>
             </div>
@@ -63,6 +67,8 @@
             function getData(date,style) {
                 // console.log(date)
             $('#txt-style').text(style+ ' #'+date);
+            $('#trn_date').val(date);
+            $('#style_code').val(style);
             var modalData = $('#mdl_table').serialize();
             var csrfToken = $('meta[name="csrf-token"]').attr('content');
             // Set the CSRF token as a default request header

@@ -232,6 +232,7 @@ Route::group(['prefix' => 'tamplate', 'middleware' => 'auth'], function () {
 // Sewing
 Route::get('sewing/output', [SewingController::class, 'output'])->name('sewing.output');
 Route::post('/sewing/style', [SewingController::class, 'getlygSewingOutput'])->name('sewing.getlygSewingOutput');
+Route::post('/sewing/edit', [SewingController::class, 'editDataTransaction'])->name('sewing.edit');
 //End Tamplate
 
 // Authentication Routes...
