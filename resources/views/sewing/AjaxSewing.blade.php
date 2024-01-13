@@ -48,5 +48,6 @@
         var formData2 = $('#form-data').serialize();
         swAlertConfirm('{{ asset('sewing/edit') }}', undefined, undefined, formData + '&' + formData2);
     }
+    
 </script>
 

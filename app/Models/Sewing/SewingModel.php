@@ -25,6 +25,7 @@ class SewingModel extends Model
 
     function getItemByIlygSewingOutput()
     {
+        // Query yang saya gunakan untuk menampilkan data tabel Summary
         $data = ItemlygSewingOutput::selectRaw('
             trn_date AS Date,
             style_code AS Style,
@@ -38,6 +39,7 @@ class SewingModel extends Model
 
     function getSize($date, $style)
 {
+    // Query ini saya gunakan untuk menampilkan isi <th></th> yang otomatis mengikuti data summary yg kita view detail
     $data = $this->select('size_name')
         ->from('lygSewingOutput')
         ->where('style_code', '=', $style)
@@ -71,11 +73,13 @@ class SewingModel extends Model
 
     public function countIlygSewingOutput($date, $style, $size)
     {
+        // Query yang saya gunakan untuk menampilkan data tabel Detail Transaksi
         $selectStatements = [];
     
         foreach ($size as $name) {
             $selectStatements[] = DB::raw("SUM(CASE WHEN a.size_name = '{$name->size_name}' THEN a.qty_output ELSE 0 END) AS \"size_{$name->size_name}\"");
         }
+        // Query di atas saya gunakan untuk menotalkan qty_output pada masing-masing size_name yang berbeda
     
         $data = $this->select(
                 array_merge(['a.operator_name'], $selectStatements, [
@@ -90,12 +94,15 @@ class SewingModel extends Model
             ->groupBy('a.operator_name', 'b.destination_code')
             ->orderBy('a.operator_name', 'DESC')
             ->get();
-    
+        
+        // Selanjutnya saya tampilkan data detail transaksi bersarkan instruksi select di atas
         return $data;
     }
 
     public function saveDataTransaction($data)
 {
+    // Ini adalah query update data tabel lygSewingOutput berdasarkan data yang mau kita edit dan dikirim melalui $data dan karna
+    // yang mau kita update hanya nilai gty_output maka saya hanya update gty_output saja.
     $result = ItemlygSewingOutput::where('trn_date', $data['trn_date'])
         ->where('operator_name', $data['operator_name'])
         ->where('style_code', $data['style_code'])
