@@ -690,12 +690,15 @@
                                             <li class="menu-item">
                                                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                                                     <i class="menu-icon tf-icons ti ti-settings"></i>
-                                                    <div data-i18n="Roles & Permissions">Sewing</div>
+                                                    <div data-i18n="Roles & Permissions">Programming Test</div>
                                                 </a>
                                                 <ul class="menu-sub">
                                                     <li class="menu-item">
-                                                        <a href="{{ asset('sewing/output') }}" class="menu-link">
-                                                            <div data-i18n="Roles">Ouput</div>
+                                                        <a href="{{ asset('test/input') }}" class="menu-link">
+                                                            <div data-i18n="Roles">Input</div>
+                                                        </a>
+                                                        <a href="{{ asset('test/royalti') }}" class="menu-link">
+                                                            <div data-i18n="Roles">Royalti</div>
                                                         </a>
                                                     </li>
                                                     {{-- <li class="menu-item">
