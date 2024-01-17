@@ -120,6 +120,20 @@ return [
             'schema' => 'public',
             'sslmode' => 'prefer',
         ],
+        'royalti_pgsql' => [
+            'driver' => 'pgsql',
+            'url' => env('DATABASE_URL'),
+            'host' => env('DB_GARUDA_HOST', '127.0.0.1'),
+            'port' => env('DB_GARUDA_PORT', '5432'),
+            'database' => env('DB_GARUDA_DATABASE', 'forge'),
+            'username' => env('DB_GARUDA_USERNAME', 'forge'),
+            'password' => env('DB_GARUDA_PASSWORD', ''),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'schema' => 'public',
+            'sslmode' => 'prefer',
+        ],
 
         'sqlsrv' => [
             'driver' => 'sqlsrv',

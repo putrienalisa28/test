@@ -20,6 +20,11 @@ use App\Http\Controllers\Eform\FormsysprintoutController;
 use App\Http\Controllers\Eform\FormsystahunController;
 use App\Http\Controllers\Master\DepartementController;
 use App\Http\Controllers\Sewing\SewingController;
+<<<<<<< Updated upstream
+use App\Http\Controllers\Garuda\GarudaController;
+=======
+>>>>>>> Stashed changes
+use App\Http\Controllers\Garuda\RoyaltiController;
 
 use App\Http\Controllers\Utility\SettingController;
 use App\Http\Controllers\monitoring\tpm\TpmMonitoringController;
@@ -233,6 +238,16 @@ Route::group(['prefix' => 'tamplate', 'middleware' => 'auth'], function () {
 Route::get('sewing/output', [SewingController::class, 'output'])->name('sewing.output');
 Route::post('/sewing/style', [SewingController::class, 'getlygSewingOutput'])->name('sewing.getlygSewingOutput');
 Route::post('/sewing/edit', [SewingController::class, 'editDataTransaction'])->name('sewing.edit');
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
+// Programming Test
+Route::get('test/input', [GarudaController::class, 'input'])->name('garuda.input');
+Route::post('test/sequence', [GarudaController::class, 'calculate'])->name('garuda.calculate');
+Route::get('test/royalti', [RoyaltiController::class, 'index'])->name('garuda.index');
+Route::post('test/getdatauser', [RoyaltiController::class, 'getdatauser'])->name('garuda.getdatauser');
+Route::post('test/getitem', [RoyaltiController::class, 'getitem'])->name('garuda.getitem');
 //End Tamplate
 
 // Authentication Routes...
